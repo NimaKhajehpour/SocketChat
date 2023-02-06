@@ -86,13 +86,14 @@ fun HomeScreen(
 
                 Button(onClick = {
                     // start server
+                    navController.navigate(Screens.MakeServerScreen.name)
                 },
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 16.dp, vertical = 2.dp),
                     shape = RoundedCornerShape(5.dp),
                 ) {
-                    Text(text = "Start a server")
+                    Text(text = "Start a session")
                 }
                 Button(onClick = {
                     // join server
@@ -102,7 +103,7 @@ fun HomeScreen(
                         .padding(horizontal = 16.dp, vertical = 2.dp),
                     shape = RoundedCornerShape(5.dp),
                 ) {
-                    Text(text = "Join a server")
+                    Text(text = "Join a session")
                 }
                 Button(onClick = {
                     // Chat history

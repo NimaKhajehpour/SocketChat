@@ -262,7 +262,7 @@ fun SettingScreen(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            ChatBubble(name = username!!, text = "Hello There", time = "12:52")
+            ChatBubble(name = username!!, text = "Hey There! \uD83D\uDE04")
         }
 
         Text(text = "Chat Bubble Corner Radius:",
@@ -277,7 +277,7 @@ fun SettingScreen(
                     dpDataStore.saveDp(dpInput!!)
                 }
             },
-            valueRange = 0f..17f,
+            valueRange = 0f..25f,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 32.dp, vertical = 4.dp)
@@ -295,7 +295,7 @@ fun SettingScreen(
                     spDataStore.saveTextSize(spInput!!)
                 }
             },
-            valueRange = 9f..17f,
+            valueRange = 7f..17f,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 32.dp, vertical = 4.dp)

@@ -20,7 +20,6 @@ import com.nima.socketchat.RoundedCornerDataStore
 fun ChatBubble (
     name: String,
     text: String,
-    time: String
 ){
     val context = LocalContext.current
     val dpDataStore = RoundedCornerDataStore(context)
@@ -50,13 +49,7 @@ fun ChatBubble (
             Text(text = text,
                 style = MaterialTheme.typography.labelMedium,
                 modifier = Modifier.padding(bottom = 8.dp),
-                fontSize = (spValue!! + 1f).sp
-            )
-
-            Text(text = time,
-                style = MaterialTheme.typography.labelSmall,
-                fontWeight = FontWeight.Light,
-                fontSize = spValue.sp
+                fontSize = (spValue + 1f).sp
             )
         }
     }
