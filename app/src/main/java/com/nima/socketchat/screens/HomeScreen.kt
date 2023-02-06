@@ -11,6 +11,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.nima.socketchat.NameDataStore
+import com.nima.socketchat.navigation.Screens
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -115,6 +116,7 @@ fun HomeScreen(
                 }
                 Button(onClick = {
                     // Settings
+                    navController.navigate(Screens.SettingScreen.name)
                 },
                     modifier = Modifier
                         .fillMaxWidth()
