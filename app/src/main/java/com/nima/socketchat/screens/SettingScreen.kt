@@ -300,5 +300,6 @@ fun SettingScreen(
                 .fillMaxWidth()
                 .padding(horizontal = 32.dp, vertical = 4.dp)
         )
+
     }
 }
