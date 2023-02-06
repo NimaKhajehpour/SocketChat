@@ -1,4 +1,11 @@
 package com.nima.socketchat.screens
 
-class ServerChatRoom {
+import androidx.compose.runtime.Composable
+import androidx.navigation.NavController
+
+@Composable
+fun ServerChatRoom (
+    navController: NavController
+){
+
 }

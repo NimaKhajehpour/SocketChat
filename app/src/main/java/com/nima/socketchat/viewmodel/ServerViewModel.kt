@@ -1,4 +1,8 @@
 package com.nima.socketchat.viewmodel
 
-class ServerViewModel {
+import androidx.lifecycle.ViewModel
+
+
+class ServerViewModel
+    :ViewModel(){
 }
