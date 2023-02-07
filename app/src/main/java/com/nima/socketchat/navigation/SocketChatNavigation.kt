@@ -6,10 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.nima.socketchat.screens.HomeScreen
-import com.nima.socketchat.screens.MakeServerScreen
-import com.nima.socketchat.screens.ServerChatRoom
-import com.nima.socketchat.screens.SettingScreen
+import com.nima.socketchat.screens.*
 
 @Composable
 fun SocketChatNavigation() {
@@ -29,6 +26,16 @@ fun SocketChatNavigation() {
         }
         composable(Screens.ServerChatRoom.name){
             ServerChatRoom(navController = navController)
+        }
+        composable(Screens.MakeClientScreen.name){
+            MakeClientScreen(navController = navController)
+        }
+        composable(Screens.ClientChatRoom.name+"/{ip}",
+            arguments = listOf(
+                navArgument(name = "ip"){type = NavType.StringType}
+            )
+        ){
+            ClientChatRoom(navController = navController, ipAddress = it.arguments?.getString("ip"))
         }
     }
 }

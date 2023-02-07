@@ -19,22 +19,23 @@ import androidx.navigation.NavController
 import com.nima.socketchat.NameDataStore
 import com.nima.socketchat.components.ChatBubble
 import com.nima.socketchat.model.Message
+import com.nima.socketchat.viewmodel.ClientViewModel
 import com.nima.socketchat.viewmodel.ServerViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ServerChatRoom (
-    navController: NavController
-){
+fun ClientChatRoom(
+    navController: NavController,
+    ipAddress: String?
+) {
 
     val context = LocalContext.current
     val nameDataStore = NameDataStore(context)
     val name = nameDataStore.getUsername.collectAsState(initial = "").value
 
-    val viewModel: ServerViewModel = hiltViewModel()
+    val viewModel: ClientViewModel = hiltViewModel()
+    viewModel.ipAddress = ipAddress
 
     val messages = viewModel.readMessages().collectAsState(initial = emptyList()).value
 

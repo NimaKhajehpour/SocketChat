@@ -12,21 +12,18 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.*
-import java.net.ConnectException
-import java.net.ServerSocket
-import java.net.Socket
-import java.net.UnknownHostException
+import java.net.*
 import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
-class ServerViewModel @Inject constructor(private val repository: MessageRepository)
+class ClientViewModel @Inject constructor(private val repository: MessageRepository)
     :ViewModel(){
 
-    private var serverSocket: ServerSocket? = null
     private var socket: Socket? = null
     private var session: Session? = null
 
+    var ipAddress: String? = null
     var sentMessage: Message? = null
     var receivedMessage: Message? = null
     var fk: UUID? = null
@@ -41,7 +38,6 @@ class ServerViewModel @Inject constructor(private val repository: MessageReposit
 
     override fun onCleared() {
         super.onCleared()
-        serverSocket?.close()
         viewModelScope.launch {
             session?.currentSession = false
             repository.updateSession(session!!)
@@ -54,9 +50,9 @@ class ServerViewModel @Inject constructor(private val repository: MessageReposit
         try {
             withContext(Dispatchers.IO){
                 Log.d("LOL", "sendReceiveMessage: BRUH")
-                serverSocket = ServerSocket(8080)
-                socket = serverSocket?.accept()
+                socket = Socket(InetAddress.getByName(ipAddress), 8080)
                 Log.d("LOL", "sendReceiveMessage: BRUH2")
+
             }
             while (true){
                 withContext(Dispatchers.IO){

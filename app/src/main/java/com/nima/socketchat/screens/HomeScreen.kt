@@ -97,6 +97,7 @@ fun HomeScreen(
                 }
                 Button(onClick = {
                     // join server
+                    navController.navigate(Screens.MakeClientScreen.name)
                 },
                     modifier = Modifier
                         .fillMaxWidth()

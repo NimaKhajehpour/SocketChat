@@ -4,5 +4,7 @@ enum class Screens {
     HomeScreen,
     SettingScreen,
     MakeServerScreen,
-    ServerChatRoom
+    ServerChatRoom,
+    ClientChatRoom,
+    MakeClientScreen
 }

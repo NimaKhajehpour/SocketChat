@@ -131,6 +131,7 @@ fun SettingScreen(
                         onValueChange = {
                             usernameInput = it
                         },
+                        singleLine = true
                     )
                 }
             )
