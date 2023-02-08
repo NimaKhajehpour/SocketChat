@@ -22,6 +22,12 @@ interface MessageDao {
     @Query("select * from session")
     fun getSessions(): Flow<List<Session>>
 
+    @Query("delete from session where sessionId = :id")
+    suspend fun deleteSession(id: UUID)
+
+    @Query("delete from message where foreignKey = :fk")
+    suspend fun deleteSessionMessages(fk: UUID)
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addMessage(message: Message)
 

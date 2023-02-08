@@ -1,6 +1,9 @@
 package com.nima.socketchat.viewmodel
 
+import android.text.Html
+import android.text.Spanned
 import android.util.Log
+import androidx.core.text.toSpanned
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nima.socketchat.model.Message
@@ -49,9 +52,7 @@ class ClientViewModel @Inject constructor(private val repository: MessageReposit
     suspend fun sendReceiveMessage(){
         try {
             withContext(Dispatchers.IO){
-                Log.d("LOL", "sendReceiveMessage: BRUH")
                 socket = Socket(InetAddress.getByName(ipAddress), 8080)
-                Log.d("LOL", "sendReceiveMessage: BRUH2")
 
             }
             while (true){
@@ -62,9 +63,7 @@ class ClientViewModel @Inject constructor(private val repository: MessageReposit
                         BufferedWriter(OutputStreamWriter(socket?.getOutputStream()))
 
                     while (socket?.isConnected == true){
-                        Log.d("LOL", "sendReceiveMessage: Connected")
                         if (sentMessage != null){
-                            Log.d("LOL", "sendReceiveMessage: Sent")
                             repository.addMessage(sentMessage!!)
                             bufferWriter
                                 .write("${sentMessage?.senderName}-${sentMessage?.messageBody}")
@@ -79,7 +78,6 @@ class ClientViewModel @Inject constructor(private val repository: MessageReposit
                         }
                         val received = bufferReader.readLine()
                         if (!received.isNullOrBlank()){
-                            Log.d("LOL", "sendReceiveMessage: Received")
                             val (name, body) = received.split("-", limit = 2)
                             receivedMessage = Message(
                                 senderName = name,
@@ -94,13 +92,10 @@ class ClientViewModel @Inject constructor(private val repository: MessageReposit
             }
         }catch (e: UnknownHostException) {
             e.printStackTrace()
-            Log.d("LOL", "sendReceiveMessage: BRUH3")
         } catch (e: IOException) {
             e.printStackTrace()
-            Log.d("LOL", "sendReceiveMessage: BRUH4")
         } catch (e: ConnectException) {
             e.printStackTrace()
-            Log.d("LOL", "sendReceiveMessage: BRUH5")
         }
     }
 }

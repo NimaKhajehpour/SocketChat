@@ -223,7 +223,9 @@ fun SettingScreen(
                     showUsernameDialog = true
                 },
             ) {
-                Icon(imageVector = Icons.Default.Edit, contentDescription = null)
+                Icon(imageVector = Icons.Default.Edit, contentDescription = null,
+                    modifier = Modifier.size(16.dp)
+                )
             }
         }
 
@@ -244,7 +246,9 @@ fun SettingScreen(
                 },
             ) {
                 Icon(painter = painterResource(id = R.drawable.ic_baseline_color_lens_24),
-                    contentDescription = null)
+                    contentDescription = null,
+                    modifier = Modifier.size(16.dp)
+                )
             }
         }
         Divider(modifier = Modifier.padding(start = 16.dp))

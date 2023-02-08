@@ -1,19 +1,20 @@
 package com.nima.socketchat.screens
 
+import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Done
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material.icons.filled.Send
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.core.text.htmlEncode
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.nima.socketchat.NameDataStore
@@ -54,7 +55,8 @@ fun ServerChatRoom (
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         LazyColumn(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .weight(1f),
             verticalArrangement = Arrangement.Bottom,
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -73,33 +75,48 @@ fun ServerChatRoom (
             }
         }
 
-        Row(
+        Surface(
             modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Start
+            shadowElevation = 16.dp
         ){
-            OutlinedTextField(
-                value = messageBody,
-                onValueChange = {
-                    messageBody = it
-                },
-                modifier = Modifier.weight(1f)
-            )
-
-            IconButton(onClick = {
-                val message = Message(
-                    senderName = name!!,
-                    messageBody = messageBody,
-                    received = false,
-                    foreignKey = viewModel.fk!!
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Start
+            ) {
+                TextField(
+                    value = messageBody,
+                    onValueChange = {
+                        messageBody = it
+                    },
+                    modifier = Modifier.weight(1f),
+                    singleLine = true,
+                    placeholder = {
+                        Text(text = "Message ...")
+                    },
+                    colors = TextFieldDefaults.textFieldColors(
+                        focusedIndicatorColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent,
+                        containerColor = Color.Transparent
+                    )
                 )
 
-                viewModel.sentMessage = message
-                messageBody = ""
-            },
-                enabled = messageBody.isNotBlank()
-            ) {
-                Icon(imageVector = Icons.Default.Done, contentDescription = null)
+                IconButton(
+                    onClick = {
+                        val message = Message(
+                            senderName = name!!,
+                            messageBody = messageBody,
+                            received = false,
+                            foreignKey = viewModel.fk!!
+                        )
+
+                        viewModel.sentMessage = message
+                        messageBody = ""
+                    },
+                    enabled = messageBody.isNotBlank()
+                ) {
+                    Icon(imageVector = Icons.Default.Send, contentDescription = null)
+                }
             }
         }
     }

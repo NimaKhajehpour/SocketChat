@@ -19,7 +19,7 @@ class ChatTextSizeDataStore(private val context: Context) {
 
     val getTextSize: Flow<Float?> = context.dataStore.data
         .map {
-            it[spKey] ?: 0f
+            it[spKey] ?: 9f
         }
 
     suspend fun saveTextSize(size: Float){

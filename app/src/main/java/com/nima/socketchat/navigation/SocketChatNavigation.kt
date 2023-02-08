@@ -37,5 +37,13 @@ fun SocketChatNavigation() {
         ){
             ClientChatRoom(navController = navController, ipAddress = it.arguments?.getString("ip"))
         }
+
+        composable(Screens.SessionScreen.name+"/{id}",
+            arguments = listOf(
+                navArgument(name = "id"){type = NavType.StringType}
+            )
+        ){
+            SessionScreen(navController = navController, id = it.arguments?.getString("id"))
+        }
     }
 }

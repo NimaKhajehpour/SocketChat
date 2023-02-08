@@ -6,5 +6,6 @@ enum class Screens {
     MakeServerScreen,
     ServerChatRoom,
     ClientChatRoom,
-    MakeClientScreen
+    MakeClientScreen,
+    SessionScreen
 }

@@ -26,4 +26,13 @@ class MessageRepository @Inject constructor(private val dao: MessageDao) {
 
     suspend fun updateSession(session: Session) =
         dao.updateSession(session)
+
+    fun getSessions(): Flow<List<Session>> =
+        dao.getSessions().flowOn(Dispatchers.IO).conflate()
+
+    suspend fun deleteSession(id: UUID) =
+        dao.deleteSession(id)
+
+    suspend fun deleteSessionMessages(fk: UUID) =
+        dao.deleteSessionMessages(fk)
 }
