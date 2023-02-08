@@ -29,7 +29,7 @@ class MainActivity : ComponentActivity() {
             val theme = themeDataStore.getTheme.collectAsState(initial = 0).value
 
             SocketChatTheme(
-                darkTheme = when(theme){
+                useDarkTheme = when(theme){
                     0 -> isSystemInDarkTheme()
                     1 -> false
                     else -> true
