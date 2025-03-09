@@ -15,3 +15,9 @@ You can customize the app however you want:
     * change chat bubble appearance
 
 This app is all you need when it comes to local network text chatting.
+
+[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
+     alt="Get it on F-Droid"
+     height="80">](https://f-droid.org/packages/com.nima.socketchat/)
+
+Or download the latest APK from the [Releases Section](https://github.com/NimaKhajehpour/SocketChat/releases/latest).
