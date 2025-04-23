@@ -1,0 +1,9 @@
+upgraded system for better functionality and more reliability
+ui redesign
+users can send multiline messages
+everyone can make a server
+chat history and persistence of chats after reconnection
+more than two users can connect to the server
+server can have password for more security
+users online status
+added donation, about and chat history screens.

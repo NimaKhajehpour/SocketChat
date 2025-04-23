@@ -1,17 +1,12 @@
 package com.nima.socketchat.utils
 
-import android.content.Context
-import android.net.wifi.WifiManager
-import java.net.InetAddress
-import java.nio.ByteBuffer
-import java.nio.ByteOrder
-
 object Constants {
 
-    fun getLocalIPAddress(context: Context): String?{
-        val wifiManager = context.applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
-        val wifiInfo = wifiManager.connectionInfo
-        val ipInt = wifiInfo.ipAddress
-        return InetAddress.getByAddress(ByteBuffer.allocate(4).order(ByteOrder.LITTLE_ENDIAN).putInt(ipInt).array()).hostAddress
-    }
+    const val usdt_address = "0x55Fd62eC2DB8F3f88d3c5825c68ED4DA2AA1F82c"
+
+    const val btc_address = "1KUNrUPMZvcrQV6Eio3bSS1GgpCJn4Jk6A"
+
+    const val eth_address = "0x55Fd62eC2DB8F3f88d3c5825c68ED4DA2AA1F82c"
+
+    const val ton_address = "UQCZ_C3c9sJwMzfBUukcSq4zBJd2A05DHywxmlkaYPlZb7BV"
 }

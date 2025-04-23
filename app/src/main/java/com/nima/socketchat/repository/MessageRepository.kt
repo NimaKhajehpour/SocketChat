@@ -1,38 +1,25 @@
 package com.nima.socketchat.repository
 
 import com.nima.socketchat.database.MessageDao
-import com.nima.socketchat.model.Message
-import com.nima.socketchat.model.Session
-import kotlinx.coroutines.Dispatchers
+import com.nima.socketchat.model.message.ChatMessage
+import com.nima.socketchat.utils.Utilities.toEntity
+import com.nima.socketchat.utils.Utilities.toChatMessage
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.conflate
-import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.map
 import java.util.UUID
-import javax.inject.Inject
 
-class MessageRepository @Inject constructor(private val dao: MessageDao) {
+class MessageRepository(
+    private val messageDao: MessageDao
+) {
+    suspend fun saveMessage(message: ChatMessage) {
+         messageDao.insertMessage(message.toEntity())
+    }
 
-    fun getCurrentSession(): Flow<Session> =
-        dao.getCurrentSession().flowOn(Dispatchers.IO).conflate()
+    fun getMessages(chatId: String): Flow<List<ChatMessage>> {
+        return messageDao.getMessagesForChat(UUID.fromString(chatId))
+            .map { it -> it.map { it.toChatMessage() } }.distinctUntilChanged()
+    }
 
-    fun getSessionMessages(fk: UUID): Flow<List<Message>> =
-        dao.getSessionMessages(fk).flowOn(Dispatchers.IO).conflate()
-
-    suspend fun addMessage(message: Message) =
-        dao.addMessage(message)
-
-    suspend fun addSession(session: Session) =
-        dao.addSession(session)
-
-    suspend fun updateSession(session: Session) =
-        dao.updateSession(session)
-
-    fun getSessions(): Flow<List<Session>> =
-        dao.getSessions().flowOn(Dispatchers.IO).conflate()
-
-    suspend fun deleteSession(id: UUID) =
-        dao.deleteSession(id)
-
-    suspend fun deleteSessionMessages(fk: UUID) =
-        dao.deleteSessionMessages(fk)
+    fun getAllUsers() = messageDao.getAllUsers().distinctUntilChanged()
 }

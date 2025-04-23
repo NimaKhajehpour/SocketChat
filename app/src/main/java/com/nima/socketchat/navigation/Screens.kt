@@ -1,11 +1,18 @@
 package com.nima.socketchat.navigation
 
 enum class Screens {
-    HomeScreen,
-    SettingScreen,
-    MakeServerScreen,
-    ServerChatRoom,
-    ClientChatRoom,
-    MakeClientScreen,
-    SessionScreen
+    LauncherScreen,
+    UserIdentityScreen,
+    ConnectingScreen,
+    HostSetupScreen,
+    JoinServerScreen,
+    ClientUsersListScreen,
+    ServerUsersListScreen,
+    ClientUserChatScreen,
+    ServerUserChatScreen,
+    LocalUserListScreen,
+    LocalUserChatScreen,
+    SettingsScreen,
+    AboutScreen,
+    DonateScreen
 }
